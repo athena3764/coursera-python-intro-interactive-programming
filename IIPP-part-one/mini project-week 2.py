@@ -8,12 +8,14 @@ def new_game():
 
 # define event handlers for control panel
 def range100():
+    
     # button that changes the range to [0,100) and starts a new game 
     global secret_number, count
     secret_number = random.randrange(0,100)
     count = int(math.log(101,2))
-  
-def range1000():
+    
+    def range1000():
+    
     # button that changes the range to [0,1000) and starts a new game     
     global secret_number, count
     secret_number = random.randrange(0,1000)
