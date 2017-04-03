@@ -20,6 +20,7 @@ paddle1_vel = 0
 paddle2_vel = 0
 score1 = 0
 score2 = 0
+
 # initialize ball_pos and ball_vel for new bal in middle of table
 # if direction is RIGHT, the ball's velocity is upper right, else upper left
 def spawn_ball(direction):
@@ -42,7 +43,7 @@ def new_game():
 
 def draw(canvas):
     global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel
-   
+    
     # draw mid line and gutters
     canvas.draw_line([WIDTH / 2, 0],[WIDTH / 2, HEIGHT], 1, "White")
     canvas.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, "White")
@@ -56,7 +57,6 @@ def draw(canvas):
     canvas.draw_circle(ball_pos, BALL_RADIUS, 1,"White", "White")
     
     # update paddle's vertical position, keep paddle on the screen
-   
     if paddle1_pos >= HALF_PAD_HEIGHT:
         paddle1_pos += paddle1_vel    
     else:
@@ -105,7 +105,8 @@ def draw(canvas):
     # draw scores 
     canvas.draw_text(str(score1), (WIDTH/4, 80), 30, 'White')
     canvas.draw_text(str(score2), (WIDTH/1.4, 80), 30, 'White')
-     
+
+#key controls
 def keydown(key):
     global paddle1_vel, paddle2_vel
     if key==simplegui.KEY_MAP["w"]:
@@ -116,7 +117,7 @@ def keydown(key):
          paddle1_vel = -3
     if key==simplegui.KEY_MAP["down"]:
          paddle1_vel = 3
-   
+            
 def keyup(key):
     global paddle1_vel, paddle2_vel
     if key==simplegui.KEY_MAP["w"]:
