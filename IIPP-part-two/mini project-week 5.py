@@ -1,3 +1,4 @@
+# implementation of card game - Memory
 import simplegui,random 
 
 # helper function to initialize globals
