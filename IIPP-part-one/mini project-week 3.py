@@ -62,5 +62,4 @@ frame.set_draw_handler(draw)
 
 
 # start frame
-
 frame.start()
