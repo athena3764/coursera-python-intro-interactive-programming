@@ -1,6 +1,4 @@
 # Rock-paper-scissors-lizard-Spock template
-
-
 # The key idea of this program is to equate the strings
 # "rock", "paper", "scissors", "lizard", "Spock" to numbers
 # as follows:
@@ -10,14 +8,15 @@
 # 2 - paper
 # 3 - lizard
 # 4 - scissors
-import random
-# helper functions
 
+import random
+
+# helper functions
 def name_to_number(name):
+    
     # delete the following pass statement and fill in your code below
     # convert name to number using if/elif/else
     # don't forget to return the result!
-    
     if name == "rock":
         return 0
     elif name == "Spock":
@@ -32,11 +31,10 @@ def name_to_number(name):
         return "error"
 
 def number_to_name(number):
-    # delete the following pass statement and fill in your code below
-    pass  
-    # convert number to a name using if/elif/else
-    # don't forget to return the result!
     
+    # delete the following pass statement and fill in your code below 
+    # convert number to a name using if/elif/else
+    # don't forget to return the result! 
     if number == 0:
         return "rock"
     elif number == 1:
@@ -51,8 +49,9 @@ def number_to_name(number):
         return "error"
     
 def rpsls(player_choice): 
+    
     # delete the following pass statement and fill in your code below
-    # print a blank line to separate consecutive games
+    # print a blank line to separate consecutive games 
     print "\n"
     
     # print out the message for the player's choice
@@ -60,7 +59,7 @@ def rpsls(player_choice):
     
     # convert the player's choice to player_number using the function name_to_number()
     player_number = name_to_number(player_choice)
-  
+    
     # compute random guess for comp_number using random.randrange()
     comp_number = random.randrange(0,5)
 
@@ -69,8 +68,10 @@ def rpsls(player_choice):
 
     # print out the message for computer's choice
     print "Computer choose " + comp_choice
+    
     # compute difference of comp_number and player_number modulo five
     d = comp_number - player_number
+    
     # use if/elif/else to determine winner, print winner message
     if d == -1 or d == -2 or d == 3 or d == 4:
         print "Player wins!"
