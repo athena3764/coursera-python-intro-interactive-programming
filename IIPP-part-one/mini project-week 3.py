@@ -1,6 +1,6 @@
 # template for "Stopwatch: The Game"
 # This game keeps track of the number of times that you have stopped the 
-#watch and how many times you manage to stop the watch on a whole second
+# watch and how many times you manage to stop the watch on a whole second
 
 # define global variables
 # count is the number of timer ticks
