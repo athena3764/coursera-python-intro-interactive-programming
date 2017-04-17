@@ -93,7 +93,7 @@ class Hand:
     def draw(self, canvas, pos):
 	# draw a hand on the canvas, use the draw method for cards
         if hole == True:
-            canvas.draw_image(card_back, [CARD_CENTER[0], CARD_CENTER[1]], CARD_SIZE, [pos[0]+CARD_CENTER[0], pos[1]+CARD_CENTER[1]], CARD_SIZE)
+            canvas.draw_image(card_back, [CARD_BACK_CENTER[0], CARD_BACK_CENTER[1]], CARD_BACK_SIZE, [pos[0]+CARD_BACK_CENTER[0], pos[1]+CARD_BACK_CENTER[1]], CARD_BACK_SIZE)
 
 # define deck class 
 class Deck:
@@ -214,14 +214,14 @@ def stand():
 def draw(canvas):
     global game_over, score,hole, outcome, outcome1, outcome2, outcome3, play, dealer,my_deck, player 
     
-	#draw exposed dealer cards
+	#draw dealer card images
 	for d in dealer.cards:
             d.draw(canvas, [CARD_SIZE[0]+dealer.cards.index(d) * CARD_SIZE[0]*0.5, 150])       
     
-	#draw unexposed dealer card
+	#draw dealer card back
 	dealer.draw(canvas, [CARD_SIZE[0], 150])
     
-	#draw player cards
+	#draw player card images
     for p in player.cards:
             p.draw(canvas, [CARD_SIZE[0]+player.cards.index(p) * CARD_SIZE[0]*0.5,300])
     
