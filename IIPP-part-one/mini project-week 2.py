@@ -7,6 +7,7 @@ import random, simplegui, math
 def new_game():
     global count, secret_number
     secret_number = random.randrange(0,100)
+    #Number of guesses
     count = int(math.log(101,2))
 
 # define event handlers for control panel
@@ -15,6 +16,7 @@ def range100():
     # button that changes the range to [0,100) and starts a new game 
     global secret_number, count
     secret_number = random.randrange(0,100)
+    #Number of guesses
     count = int(math.log(101,2))
     
     def range1000():
@@ -22,6 +24,7 @@ def range100():
     # button that changes the range to [0,1000) and starts a new game     
     global secret_number, count
     secret_number = random.randrange(0,1000)
+    #Number of guesses
     count = int(math.log(1001,2))
 
 def input_guess(number):
