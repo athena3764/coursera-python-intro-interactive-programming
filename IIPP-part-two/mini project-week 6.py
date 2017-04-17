@@ -77,15 +77,16 @@ class Hand:
         return self.cards.append(card)
 
     def get_value(self):
- 	# count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust    
+ 	# count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
+	# compute the value of the hand, see Blackjack video
         value1 =[]
         value = 0 
         for j in self.cards:
             rank = j.get_rank()
             value1.append(rank)
             value += VALUES[rank]
-      
-        if "A" in value1 and value < 12:
+			
+		if "A" in value1 and value < 12:
             return value + 10
         else:
             return value    
@@ -93,7 +94,7 @@ class Hand:
 	# draw a hand on the canvas, use the draw method for cards
         if hole == True:
             canvas.draw_image(card_back, [CARD_CENTER[0], CARD_CENTER[1]], CARD_SIZE, [pos[0]+CARD_CENTER[0], pos[1]+CARD_CENTER[1]], CARD_SIZE)
- 
+
 # define deck class 
 class Deck:
     def __init__(self):
@@ -102,8 +103,8 @@ class Deck:
         for suit in SUITS:
             for rank in RANKS:
                 self.deck.append(Card(suit, rank))
-   
-    def shuffle(self):
+	
+	def shuffle(self):
 	# shuffle the deck 
         random.shuffle(self.deck)
 
@@ -133,15 +134,15 @@ def deal():
         score = 0
         game_over = False
         hit_or_stand = True
- 
-    my_deck = Deck()
+	
+	my_deck = Deck()
     player = Hand()
     dealer = Hand()
     
     my_deck.shuffle()    
     my_deck.deal_card()
        
-    if card_num>52:
+    if card_num > 52:
         game_over = True
         card_num =0
     
@@ -150,8 +151,8 @@ def deal():
     
     dealer.add_card(my_deck.deal_card())
     card_num +=1
- 
-    dealer.add_card(my_deck.deal_card())
+	
+	dealer.add_card(my_deck.deal_card())
     card_num +=1  
     
     play = True
@@ -177,11 +178,7 @@ def hit():
             score-=1
             hole = False
             play = False
-            
-    # if the hand is in play, hit the player
-   
-    # if busted, assign a message to outcome, update in_play and score
-       
+
 def stand():
     # if hand is in play, repeatedly hit dealer until his hand has value 17 or more
     # assign a message to outcome, update in_play and score
@@ -194,8 +191,8 @@ def stand():
         game_over = True
         card_num = 0    
         play =False
-       
-    if play:
+    
+	if play:
         while dealer.get_value() < 17:
             dealer.add_card(my_deck.deal_card())
             card_num +=1
@@ -207,23 +204,28 @@ def stand():
         elif dealer.get_value()>= player.get_value():
             outcome2 = True
             score-=1
-           
-        elif dealer.get_value() >= 17 and player.get_value() <22 and player.get_value() > dealer.get_value():            
+		
+		elif dealer.get_value() >= 17 and player.get_value() <22 and player.get_value() > dealer.get_value():            
             outcome3 = True
             score+=1        
     play = False  
 
 # draw handler    
 def draw(canvas):
-    # test to make sure that card.draw works 
     global game_over, score,hole, outcome, outcome1, outcome2, outcome3, play, dealer,my_deck, player 
-    for d in dealer.cards:
+    
+	#draw exposed dealer cards
+	for d in dealer.cards:
             d.draw(canvas, [CARD_SIZE[0]+dealer.cards.index(d) * CARD_SIZE[0]*0.5, 150])       
-    dealer.draw(canvas, [CARD_SIZE[0], 150])
-
+    
+	#draw unexposed dealer card
+	dealer.draw(canvas, [CARD_SIZE[0], 150])
+    
+	#draw player cards
     for p in player.cards:
             p.draw(canvas, [CARD_SIZE[0]+player.cards.index(p) * CARD_SIZE[0]*0.5,300])
-    canvas.draw_text("Player", (50, 290), 30, 'Black')
+    
+	canvas.draw_text("Player", (50, 290), 30, 'Black')
     canvas.draw_text("Dealer", (50, 140), 30, 'Black')   
     canvas.draw_text("Blackjack", (20, 50), 50, 'Black')    
     canvas.draw_text("Score = " + str(score), (300, 70), 30, 'Black')
@@ -236,8 +238,8 @@ def draw(canvas):
         canvas.draw_text(dealer_wins, (100, 100), 30, 'Black')
     if outcome3:
         canvas.draw_text(player_wins, (100, 100), 30, 'Black')
-      
-    if hit_or_stand == True and play == True and game_over == False:
+    
+	if hit_or_stand == True and play == True and game_over == False:
         canvas.draw_text("Hit or stand?", (100, 500), 30, 'Black')
     if new_deal == True and play == False and game_over == False:
         canvas.draw_text("New deal?", (100, 500), 30, 'Black')
