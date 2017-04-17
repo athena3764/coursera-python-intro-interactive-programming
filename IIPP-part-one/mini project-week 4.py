@@ -101,6 +101,7 @@ def draw(canvas):
     if ball_pos[0] >=  WIDTH-PAD_WIDTH-BALL_RADIUS and ball_pos[1] > paddle1_pos+HALF_PAD_HEIGHT:
         score1 += 1
         return spawn_ball(LEFT)
+    
     # draw scores 
     canvas.draw_text(str(score1), (WIDTH/4, 80), 30, 'White')
     canvas.draw_text(str(score2), (WIDTH/1.4, 80), 30, 'White')
