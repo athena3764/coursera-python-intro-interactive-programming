@@ -62,58 +62,58 @@ class Card:
 # define hand class
 class Hand:
     def __init__(self):
-	# create Hand object
+    # create Hand object
         self.cards = []
 
     def __str__(self):
-	# return a string representation of a hand
+    # return a string representation of a hand
         ans = "Hand contains"
         for i in self.cards:
             ans += " " + str(i)
         return ans
      
     def add_card(self, card):
-	# add a card object to a hand      
+    # add a card object to a hand      
         return self.cards.append(card)
 
     def get_value(self):
- 	# count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
-	# compute the value of the hand, see Blackjack video
+    # count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
+    # compute the value of the hand, see Blackjack video
         value1 =[]
         value = 0 
         for j in self.cards:
             rank = j.get_rank()
             value1.append(rank)
             value += VALUES[rank]
-			
-		if "A" in value1 and value < 12:
+            
+        if "A" in value1 and value < 12:
             return value + 10
         else:
             return value    
     def draw(self, canvas, pos):
-	# draw a hand on the canvas, use the draw method for cards
+    # draw a hand on the canvas, use the draw method for cards
         if hole == True:
             canvas.draw_image(card_back, [CARD_BACK_CENTER[0], CARD_BACK_CENTER[1]], CARD_BACK_SIZE, [pos[0]+CARD_BACK_CENTER[0], pos[1]+CARD_BACK_CENTER[1]], CARD_BACK_SIZE)
 
 # define deck class 
 class Deck:
     def __init__(self):
-	# create a Deck object
+    # create a Deck object
         self.deck = []
         for suit in SUITS:
             for rank in RANKS:
                 self.deck.append(Card(suit, rank))
-	
-	def shuffle(self):
-	# shuffle the deck 
+    
+    def shuffle(self):
+    # shuffle the deck 
         random.shuffle(self.deck)
 
     def deal_card(self):
-	# deal a card object from the deck
+    # deal a card object from the deck
         return self.deck.pop()	# deal a card object from the deck
     
     def __str__(self):
-	# return a string representing the deck
+    # return a string representing the deck
         ans = "Deck contains"
         for i in self.deck:  
             ans += " " + str(i)
@@ -134,8 +134,8 @@ def deal():
         score = 0
         game_over = False
         hit_or_stand = True
-	
-	my_deck = Deck()
+    
+    my_deck = Deck()
     player = Hand()
     dealer = Hand()
     
@@ -151,8 +151,8 @@ def deal():
     
     dealer.add_card(my_deck.deal_card())
     card_num +=1
-	
-	dealer.add_card(my_deck.deal_card())
+    
+    dealer.add_card(my_deck.deal_card())
     card_num +=1  
     
     play = True
@@ -192,7 +192,7 @@ def stand():
         card_num = 0    
         play =False
     
-	if play:
+    if play:
         while dealer.get_value() < 17:
             dealer.add_card(my_deck.deal_card())
             card_num +=1
@@ -204,8 +204,8 @@ def stand():
         elif dealer.get_value()>= player.get_value():
             outcome2 = True
             score-=1
-		
-		elif dealer.get_value() >= 17 and player.get_value() <22 and player.get_value() > dealer.get_value():            
+        
+        elif dealer.get_value() >= 17 and player.get_value() <22 and player.get_value() > dealer.get_value():            
             outcome3 = True
             score+=1        
     play = False  
@@ -214,17 +214,17 @@ def stand():
 def draw(canvas):
     global game_over, score,hole, outcome, outcome1, outcome2, outcome3, play, dealer,my_deck, player 
     
-	#draw dealer card images
-	for d in dealer.cards:
-		d.draw(canvas, [CARD_SIZE[0]+dealer.cards.index(d) * CARD_SIZE[0]*0.5, 150])       
+    #draw dealer card images
+    for d in dealer.cards:
+        d.draw(canvas, [CARD_SIZE[0]+dealer.cards.index(d) * CARD_SIZE[0]*0.5, 150])       
     
-	#draw dealer card back
-	dealer.draw(canvas, [CARD_BACK_SIZE[0], 150])
+    #draw dealer card back
+    dealer.draw(canvas, [CARD_BACK_SIZE[0], 150])
     
-	#draw player card images
-	for p in player.cards:
-		p.draw(canvas, [CARD_SIZE[0]+player.cards.index(p) * CARD_SIZE[0]*0.5,300])
-		
+    #draw player card images
+    for p in player.cards:
+        p.draw(canvas, [CARD_SIZE[0]+player.cards.index(p) * CARD_SIZE[0]*0.5,300])
+        
     canvas.draw_text("Player", (50, 290), 30, 'Black')
     canvas.draw_text("Dealer", (50, 140), 30, 'Black')   
     canvas.draw_text("Blackjack", (20, 50), 50, 'Black')    
@@ -239,7 +239,7 @@ def draw(canvas):
     if outcome3:
         canvas.draw_text(player_wins, (100, 100), 30, 'Black')
     
-	if hit_or_stand == True and play == True and game_over == False:
+    if hit_or_stand == True and play == True and game_over == False:
         canvas.draw_text("Hit or stand?", (100, 500), 30, 'Black')
     if new_deal == True and play == False and game_over == False:
         canvas.draw_text("New deal?", (100, 500), 30, 'Black')
