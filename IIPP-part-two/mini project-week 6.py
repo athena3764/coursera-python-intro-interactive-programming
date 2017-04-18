@@ -216,16 +216,16 @@ def draw(canvas):
     
 	#draw dealer card images
 	for d in dealer.cards:
-            d.draw(canvas, [CARD_SIZE[0]+dealer.cards.index(d) * CARD_SIZE[0]*0.5, 150])       
+		d.draw(canvas, [CARD_SIZE[0]+dealer.cards.index(d) * CARD_SIZE[0]*0.5, 150])       
     
 	#draw dealer card back
-	dealer.draw(canvas, [CARD_SIZE[0], 150])
+	dealer.draw(canvas, [CARD_BACK_SIZE[0], 150])
     
 	#draw player card images
-    for p in player.cards:
-            p.draw(canvas, [CARD_SIZE[0]+player.cards.index(p) * CARD_SIZE[0]*0.5,300])
-    
-	canvas.draw_text("Player", (50, 290), 30, 'Black')
+	for p in player.cards:
+		p.draw(canvas, [CARD_SIZE[0]+player.cards.index(p) * CARD_SIZE[0]*0.5,300])
+		
+    canvas.draw_text("Player", (50, 290), 30, 'Black')
     canvas.draw_text("Dealer", (50, 140), 30, 'Black')   
     canvas.draw_text("Blackjack", (20, 50), 50, 'Black')    
     canvas.draw_text("Score = " + str(score), (300, 70), 30, 'Black')
