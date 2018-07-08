@@ -43,7 +43,6 @@ class Card:
         else:
             self.suit = None
             self.rank = None
-            print "Invalid card: ", suit, rank
 
     def __str__(self):
         return self.suit + self.rank
