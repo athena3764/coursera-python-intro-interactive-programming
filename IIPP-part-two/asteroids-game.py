@@ -1,4 +1,4 @@
-# program template for Spaceship
+# program template for Asteroids Game
 import simplegui
 import math
 import random
